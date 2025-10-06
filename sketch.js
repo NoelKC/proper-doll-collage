@@ -311,21 +311,48 @@ function draw() {
         image(randoText, random(canW), random(canH), random(canW*.5, canW/2), random(canH*.5, canH/2));
         image(randoText, random(canW), random(canH), random(canW*.5, canW/2), random(canH*.5, canH/2));
         image(randoText, random(canW), random(canH), random(canW*.5, canW/2), random(canH*.5, canH/2));
-        addText(); 
-        addText(); 
-        addText(); 
-        addText(); 
     } else if (currentPage == 2) { //PG 2 - press r/R key to call in random image 
+        background(0);
+        // calling in the random arrays of images 
+        let randoText = random(texts);
+        let randoPpl = random(ppls);
+
+        // placing the images 
+        imageMode(CORNER);
+        image(randoPpl, 0, 0, canW, canH); //the ppl images are the BG (fill the canvas from center) 
+        imageMode(CENTER);
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+        addText(); 
+    } else if (currentPage == 3) { //PG 2 - press r/R key to call in random image 
         background(0, 0, 250);
-        // let randoRotPpl = random(ppls);
-        // image(randoRotPpl, 250, 250, 500, 500);
+        let randoRotPpl = random(ppls);
+        imageMode(CORNER);
+        image(randoRotPpl, 0, 0, canW, canH); //the ppl images are the BG (fill the canvas from center) 
+        imageMode(CENTER);
         // placing the images 
         // bounce 
         for (let i = 0; i < bounceCountText.length; i++) {
             bounceCountText[i].drawTexts();
             bounceCountText[i].bouncingText();
         }
-    } else { //Home page - Intro/ OG Skid & Pump 
+    } else if (currentPage == 4) { //PG 2 - press r/R key to call in random image 
+        background(0, 0, 250);
+        // placing the images 
+        // bounce 
+        for (let i = 0; i < bounceCountText.length; i++) {
+            bounceCountText[i].drawTexts();
+            bounceCountText[i].bouncingText();
+        }
+    } 
+    else { //Home page - Intro/ OG Skid & Pump 
         background(0);
         textAlign(CENTER);
         // text("Hi this is the HOME page", w*2, 100, 700, 200)
@@ -353,11 +380,7 @@ function fullScreen() {
 function addText() {
     // calling in the random arrays of images 
     let randoTexts = random(texts);
-    image(randoTexts, random(500), random(500), random(100, 350), random(100, 350)); //the text images spawn in randomly on the canvas at random sizes 
-    // image(randoTexts, random(500), random(500), random(100, 350), random(100, 350));
-    // image(randoTexts, random(500), random(500), random(100, 350), random(100, 350));
-    // image(randoTexts, random(500), random(500), random(100, 350), random(100, 350));
-    // image(randoTexts, random(500), random(500), random(100, 350), random(100, 350));
+    image(randoTexts, random(canW), random(canH), random(canW*.5, canW/2), random(canH*.5, canH/2)); //the text images spawn in randomly on the canvas at random sizes 
 }
 function addRotText() {
     let newText = new nText();
@@ -374,9 +397,20 @@ function keyPressed() {
     } else if (key == '2') { //PG 2 - press r/R key to call in random image 
         console.log("Page 2");
         currentPage = 2;
+        frameRate(1);
+        // loop();
+    } else if (key == '3') { //PG 2 - press r/R key to call in random image 
+        console.log("Page 3");
+        currentPage = 3;
         frameRate(10);
         // loop();
-    } else if (key == 't' || key == 'T') { // Press t/T Key to add more Images for PG 1
+    } else if (key == '4') { //PG 2 - press r/R key to call in random image 
+        console.log("Page 4");
+        currentPage = 4;
+        frameRate(10);
+        // loop();
+    } 
+    else if (key == 't' || key == 'T') { // Press t/T Key to add more Images for PG 1
         addText();
         console.log("t");
         // currentPage = 1;
