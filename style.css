@@ -2,6 +2,7 @@
 
 
 
+/* cross out the padding and margin when you don't have the body commented in  */
 body {
     padding: 10;
     margin: 10;

@@ -2,6 +2,9 @@
 
 
 
+
+// When the body is commented out you have to change everything that has the varraible "w" and "h" from (w/1.5, h/1.5) with just (w, h) and change canW and canH from = wh/ 1.5 with just wh. 
+
 //<---- from a past project - mixed with this video by Jacob Rivkin https://www.youtube.com/watch?v=hxjEl-pun7o - start ---->  
 let texts = [];
 let ppls = [];
@@ -13,10 +16,11 @@ let bounceCountText;
 
 //canvas + pages 
 let currentPage = 0;
+var currentRate = 24; // the current framerate number - start at 24 
 var w = window.innerWidth;
 var h = window.innerHeight;
-var canW = w/1.5; 
-var canH = h/1.5; 
+var canW = w/1.5; //with body (w/1.5) -without-> w 
+var canH = h/1.5; //with body (h/1.5) -without-> h 
 
 
 //text and image preloads 
@@ -253,7 +257,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(w/1.5, h/1.5); //might change later 
+    createCanvas(w/1.5, h/1.5); //with the body (w/1.5, h/1.5) -without-> (w, h)
    
 
     background(0, 60, 150);
@@ -296,6 +300,7 @@ function setup() {
 function draw() {
     background(0);
     imageMode(CENTER);
+    frameRate(currentRate); 
 
     if (currentPage == 1) { //PG 1 - press t/T key to call in random image  
         background(0);
@@ -388,40 +393,49 @@ function addRotText() {
     console.log("ADD ROT");
 }
 
-function keyPressed() {
-    if (key == '1') { // PG 1 - press t/T key to call in random image 
+function keyPressed() { 
+    let fps = frameRate() ; // for the consol log - says what the frameRate is 
+
+    if (key == 'u' || key == 'U') { // Press u/U Key to increase the framerate 
+        frameRate(currentRate = currentRate + 1); 
+        console.log("u");
+        console.log(fps); 
+    } else if (key == 'i' || key == 'I') { // Press i/I Key to decrease the framerate 
+        frameRate(currentRate = currentRate - 1); 
+        console.log("i");
+        console.log(fps); 
+    } else if (key == '1') { // PG 1 - press t/T key to call in random image 
         console.log("Page 1");
         currentPage = 1;
-        frameRate(1);// update 1 frame every two seconds => 0.5 fps
+        // frameRate(currentRate-23);// update 1 frame every two seconds => 0.5 fps
         // noLoop();
     } else if (key == '2') { //PG 2 - press r/R key to call in random image 
         console.log("Page 2");
         currentPage = 2;
-        frameRate(1);
+        // frameRate(currentRate-23);
         // loop();
     } else if (key == '3') { //PG 2 - press r/R key to call in random image 
         console.log("Page 3");
         currentPage = 3;
-        frameRate(10);
+        // frameRate(currentRate-14);
         // loop();
     } else if (key == '4') { //PG 2 - press r/R key to call in random image 
         console.log("Page 4");
         currentPage = 4;
-        frameRate(10);
+        // frameRate(currentRate-14);
         // loop();
-    } 
-    else if (key == 't' || key == 'T') { // Press t/T Key to add more Images for PG 1
+    } else if (key == 't' || key == 'T') { // Press t/T Key to add more Images for PG 1
         addText();
         console.log("t");
         // currentPage = 1;
-    } else if (key == 'r' || key == 'R') { // Press t/T Key to add more rotating Images for PG 2
+    } else if (key == 'r' || key == 'R') { // Press r/R Key to add more rotating Images for PG 2
         addRotText();
         console.log("r");
         // currentPage = 2;
     } else { // PG 0 - home PG  
         console.log("HOME");
         currentPage = 0;
-        frameRate(24);
+        // frameRate(currentRate);
         // loop();
     }
 
