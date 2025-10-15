@@ -287,10 +287,10 @@ function setup() {
         bounceCountText[i] = new nText(canW-100, canH-100, 0, .5); // x, y, rot, scale 
     }
 
-    // // Save Image Button 
-    // saveButton = createButton('Save Image');
-    // saveButton.position(170, 245); // Position the button
-    // saveButton.mousePressed(saveCanvasAsImage); // Attach the save function to the button
+    // Save Image Button 
+    saveButton = createButton('Save Image');
+    saveButton.position(100, 200); // Position the button
+    saveButton.mousePressed(saveCanvasAsImage); // Attach the save function to the button
     // // fullscreen Button 
     // fullButton = createButton('Full Screen');
     // fullButton.position(265, 245); // Position the button
@@ -432,6 +432,8 @@ function keyPressed() {
         addRotText();
         console.log("r");
         // currentPage = 2;
+    } else if (key == 'y' || key == 'Y') { //save image with y key 
+        saveCanvasAsImage(); 
     } else { // PG 0 - home PG  
         console.log("HOME");
         currentPage = 0;
