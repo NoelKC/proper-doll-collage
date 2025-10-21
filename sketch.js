@@ -289,12 +289,12 @@ function setup() {
 
     // Save Image Button 
     saveButton = createButton('Save Image');
-    saveButton.position(100, 200); // Position the button
+    saveButton.position(100, 218); // Position the button - (100, 218)
     saveButton.mousePressed(saveCanvasAsImage); // Attach the save function to the button
-    // // fullscreen Button 
-    // fullButton = createButton('Full Screen');
-    // fullButton.position(265, 245); // Position the button
-    // fullButton.mousePressed(fullScreen); // Attach the save function to the button
+    // fullscreen Button 
+    fullButton = createButton('Full Screen');
+    fullButton.position(210, 218); // Position the button - (100, 218) 
+    fullButton.mousePressed(fullScreenF); // Attach the save function to the button
 }
 
 function draw() {
@@ -374,11 +374,12 @@ function saveCanvasAsImage() {
     saveCanvas('pdc', 'png'); //Saves the canvas as 'pdc (#).png' 
 }
 // <---- full screen button --->
-function fullScreen() {
-    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+function fullScreenF() {
         let fs = fullscreen();
-        fullscreen(!fs);
-    }
+        fullscreen(!fs); 
+        canW = w; 
+        canH = h; 
+        createCanvas(w,h); 
 }
 
 // <---- From PIKMIN File - changed names to fix here it calls in another random text image----> 
